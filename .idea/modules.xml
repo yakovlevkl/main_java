@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/main_java.iml" filepath="$PROJECT_DIR$/.idea/main_java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/QA_Practicum_Project_1/qa-scooter.iml" filepath="$PROJECT_DIR$/QA_Practicum_Project_1/qa-scooter.iml" />
+    </modules>
+  </component>
+</project>
