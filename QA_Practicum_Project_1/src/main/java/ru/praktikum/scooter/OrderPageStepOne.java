@@ -7,7 +7,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class OrderPageStepOne extends HeaderAndFoterOfPage {
+class OrderPageStepOne extends MainPage {
 
     // Заказ * Имя
     @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div[2]/div[2]/div[1]/input")
@@ -37,37 +37,53 @@ public class OrderPageStepOne extends HeaderAndFoterOfPage {
     @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div[2]/div[3]/button")
     private SelenideElement buttonNext;
 
-    public void setBuyerFirstName(String firstName) {
-        fieldFirstName.setValue(firstName);
+    // Visible Error Values
+    @FindBy(how = How.CLASS_NAME,using = "Input_ErrorMessage__3HvIb")
+    private ElementsCollection errorValues;
+
+    // Visible Error Value Metro          Order_MetroError__1BtZb
+    @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div[2]/div[2]/div[4]/div[2]")
+    private SelenideElement errorValueMetro;
+
+    String getErrorValues(int number){
+        return errorValues.get(number).getText();
     }
 
-    public void setBuyerSecondName(String secondName) {
-        fieldSecondName.setValue(secondName);
+    private void setBuyerFirstName(String firstName) {
+        if (!firstName.equals("")) {
+            fieldFirstName.setValue(firstName);
+        }
     }
 
-    public void setBuyerAddress(String address) {
-        fieldAddress.setValue(address);
+    private void setBuyerSecondName(String secondName) {
+        if (!secondName.equals("")) {fieldSecondName.setValue(secondName);}
     }
 
-    public void setMetroStation(String metroStation) {
-        fieldMetroStation.shouldBe(Condition.visible).click();
-        fieldMetroStation.setValue(metroStation).sendKeys(Keys.DOWN);
-        fieldMetroStation.pressEnter();
+    private void setBuyerAddress(String address) {
+        if (!address.equals("")) {fieldAddress.setValue(address);}
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        fieldPhoneNumber.setValue(phoneNumber);
+    private void setMetroStation(String metroStation) {
+        if (!metroStation.equals("")) {
+            fieldMetroStation.shouldBe(Condition.visible).click();
+            fieldMetroStation.setValue(metroStation).sendKeys(Keys.DOWN);
+            fieldMetroStation.pressEnter();
+        }
+    }
+
+    private void setPhoneNumber(String phoneNumber) {
+        if (!phoneNumber.equals("")) {fieldPhoneNumber.setValue(phoneNumber);}
     }
 
     private void clickOnButtonNext() {
         buttonNext.scrollTo().shouldBe(Condition.visible).click();
     }
 
-    public void orderConfirmationStepOne(String firstName,
-                                         String secondName,
-                                         String address,
-                                         String metroStation,
-                                         String setPhoneNumber)
+    void orderConfirmationStepOne(String firstName,
+                                  String secondName,
+                                  String address,
+                                  String metroStation,
+                                  String setPhoneNumber)
     {
         setBuyerFirstName(firstName);
         setBuyerSecondName(secondName);
@@ -76,4 +92,13 @@ public class OrderPageStepOne extends HeaderAndFoterOfPage {
         setPhoneNumber(setPhoneNumber);
         clickOnButtonNext();
     }
+
+    ElementsCollection errorOnOrderForm(){
+        return errorValues;
+    }
+
+    SelenideElement errorOnOrderFormValueMetro(){
+        return errorValueMetro;
+    }
+
 }

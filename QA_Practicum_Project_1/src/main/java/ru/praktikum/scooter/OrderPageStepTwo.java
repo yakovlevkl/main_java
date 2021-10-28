@@ -6,9 +6,8 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-import java.util.Objects;
 
-public class OrderPageStepTwo extends OrderPageStepOne {
+class OrderPageStepTwo extends OrderPageStepOne {
     //* Когда привезти самокат
     @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div[2]/div[2]/div[1]/div[1]/div/input")
     private SelenideElement fieldDeliveryDate;
@@ -33,8 +32,8 @@ public class OrderPageStepTwo extends OrderPageStepOne {
     @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div[2]/div[2]/div[4]/input")
     SelenideElement fieldCommentsForCourier;
 
-    // Button Back
-    @FindBy(how = How.XPATH,using = "/html/body/div/div/div[2]/div[3]/button[1]")
+    // Button Back                  //*[@id="root"]/div/div[2]/div[3]/button
+    @FindBy(how = How.CLASS_NAME,using = "Button_Inverted__3IF-i")
     private SelenideElement buttonBack;
 
     // Button Order //*[@id="root"]/div/div[2]/div[3]/button[2]
@@ -53,48 +52,49 @@ public class OrderPageStepTwo extends OrderPageStepOne {
     @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div[2]/div[5]")
     private SelenideElement formConfirmOrder;
 
-    void setDeliveryDate(String deliveryDate) {
+    void clickButtonBack(){
+        buttonBack.scrollTo().shouldBe(Condition.visible).click();
+    }
+
+    private void setDeliveryDate(String deliveryDate) {
         fieldDeliveryDate.shouldBe(Condition.visible).click();
         fieldDeliveryDate.setValue(deliveryDate).pressEnter();
     }
 
-    void setRentalPeriod(String rentalPeriod) {
+    private void setRentalPeriod(String rentalPeriod) {
         fieldRentalPeriod.shouldBe(Condition.visible).click();
         SelenideElement element = listRentalPeriod.get(0);
         element.scrollTo().shouldBe(Condition.visible).click();
     }
 
-    void setColorScooter(String scooterColor) {
-        if (Objects.equals(scooterColor, "black")) {
+    private void setColorScooter(String scooterColor) {
+        if (scooterColor.equals("black")) {
             fieldColorScooterBlack.shouldBe(Condition.visible).click();
         } else {
             fieldColorScooterGray.shouldBe(Condition.visible).click();
         }
     }
 
-    void setCommentsForCourier(String commentsForCourier) {
+    private void setCommentsForCourier(String commentsForCourier) {
         fieldCommentsForCourier.shouldBe(Condition.visible).setValue(commentsForCourier);
     }
 
-    void clickButtonOrder() {
+    private void clickButtonOrder() {
         buttonOrder.scrollTo().shouldBe(Condition.visible).click();
     }
 
-    void clickButtonConfirmOrderYes() {
+    private void clickButtonConfirmOrderYes() {
         buttonConfirmOrderYes.scrollTo().shouldBe(Condition.visible).click();
     }
 
-    void controlformConfirmOrder() {
-        if (formConfirmOrder.isDisplayed()) {
-            System.out.println("Окно подтвердления заказа не закрылось [Fail]");
-            clickButtonOrder();
-        }
+    Boolean controlformConfirmOrder() {
+        return buttonConfirmOrderYes.isDisplayed();
     }
 
-    public void orderConfirmationStepTwo(String deliveryDate,
-                                         String rentalPeriod,
-                                         String scooterColor,
-                                         String commentsForCourier)
+    void orderConfirmationStepTwo(String deliveryDate,
+                                  String rentalPeriod,
+                                  String scooterColor,
+                                  String commentsForCourier)
     {
         setDeliveryDate(deliveryDate);
         setRentalPeriod(rentalPeriod) ;
@@ -102,6 +102,5 @@ public class OrderPageStepTwo extends OrderPageStepOne {
         setCommentsForCourier(commentsForCourier);
         clickButtonOrder();
         clickButtonConfirmOrderYes();
-        controlformConfirmOrder();
     }
 }
