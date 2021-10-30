@@ -32,17 +32,21 @@ class HeaderAndFooterOfPage {
     @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div/div[4]/div[2]/div[5]/button")
     private SelenideElement buttonOrderFooter;
 
-    // Button 'Статус заказа'
-    @FindBy(how = How.XPATH,using = "/html/body/div/div/div[1]/div[1]/div[2]/button[2]")
-    private SelenideElement orderStatus;
+    //Button Статус заказа Header_Link__1TAG7
+    @FindBy(how = How.CLASS_NAME,using = "Header_Link__1TAG7")
+    private SelenideElement buttonOrderStatus;
 
-    // Поле Номер заказа
-    @FindBy(how = How.TAG_NAME,using = "placeholder=\"Введите номер заказа\"")
-    private SelenideElement orderNumber;
+    // Field order number
+    @FindBy(how = How.CLASS_NAME,using = "Header_Input__xIoUq")
+    private SelenideElement fieldOrderNumber;
 
-    // Button GO
-    @FindBy(how = How.XPATH,using = "/html/body/div/div/div[1]/div[3]/button")
+    // Button Go!
+    @FindBy(how = How.CLASS_NAME,using = "Header_Button__28dPO")
     private SelenideElement buttonGo;
+
+    // Image Такого заказа нет Track_NotFound__6oaoY
+    @FindBy(how = How.CLASS_NAME,using = "Track_NotFound__6oaoY")
+    private SelenideElement imageTrackNotFound;
 
     // Button Coockie
     @FindBy(how = How.ID,using = "rcc-confirm-button")
@@ -73,5 +77,15 @@ class HeaderAndFooterOfPage {
     Boolean clickLinkScooterSite(){
         linkScooterSite.shouldBe(Condition.visible).click();
         return mainPageScooterSite.shouldBe(Condition.visible).isDisplayed();
+    }
+
+    void inputNumberOrder(String orderNumber){
+        buttonOrderStatus.scrollTo().shouldBe(Condition.visible).click();
+        fieldOrderNumber.shouldBe(Condition.visible).setValue(orderNumber);
+        buttonGo.scrollTo().shouldBe(Condition.visible).click();
+    }
+
+    Boolean isTrackFound(){
+        return imageTrackNotFound.shouldBe(Condition.visible).isDisplayed();
     }
 }

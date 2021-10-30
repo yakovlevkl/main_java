@@ -9,10 +9,12 @@ public class CreatingOrderTest {
     @Before
     public void setUp() {
         // chrome, edge
-        String typeBrowser = "chrome";
+
+        String typeBrowser = "firefox";
+        System.setProperty("selenide.browser", typeBrowser);
         Configuration.browser = typeBrowser;
         Configuration.startMaximized = true;
-        System.out.println("Тестирование запущено на боаузере: " + typeBrowser);
+        System.out.println("Тестирование запущено на браузере: " + typeBrowser);
     }
 
     @Test
@@ -41,11 +43,18 @@ public class CreatingOrderTest {
                 "gray",
                 "При встрече сплясать лезгинку");
 
-        if (scooterOrderPageStep.controlformConfirmOrder()) {
+        if (scooterOrderPageStep.controlFormConfirmOrder()) {
             System.out.println("Окно подтверждения заказа НЕ закрылось [Fail]");
         } else {
-            System.out.println("Окно подтверждения заказа закрылось  [Ok]");
+            System.out.println("Окно подтверждения заказа закрылось [Ok]");
         }
+
+        if (scooterOrderPageStep.isOrderAccepted()) {
+            System.out.println("Заказ оформлен и приянт [Ok]");
+        } else {
+            System.out.println("Заказ НЕ приянт [Fail]");
+        }
+
     }
 
     @Test
@@ -74,10 +83,17 @@ public class CreatingOrderTest {
                 "black",
                 "Разговаривать без акцента");
 
-        if (scooterOrderPageStep.controlformConfirmOrder()) {
+        if (scooterOrderPageStep.controlFormConfirmOrder()) {
             System.out.println("Окно подтверждения заказа НЕ закрылось [Fail]");
         } else {
             System.out.println("Окно подтверждения заказа закрылось  [Ok]");
         }
+
+        if (scooterOrderPageStep.isOrderAccepted()) {
+            System.out.println("Заказ оформлен и приянт [Ok]");
+        } else {
+            System.out.println("Заказ НЕ приянт [Fail]");
+        }
+
     }
 }

@@ -11,10 +11,11 @@ public class LinksTest {
     @Before
     public void setUp() {
         // chrome, edge
-        String typeBrowser = "chrome";
+        String typeBrowser = "firefox";
+        System.setProperty("selenide.browser", typeBrowser);
         Configuration.browser = typeBrowser;
         Configuration.startMaximized = true;
-        System.out.println("Тестирование запущено на боаузере: " + typeBrowser);
+        System.out.println("Тестирование запущено на браузере: " + typeBrowser);
     }
 
     @Test

@@ -20,74 +20,141 @@ class MainPage extends HeaderAndFooterOfPage{
     private SelenideElement specificationsScooter;
 
     //Блок для "Как это работает" (Элементы "Кружок с цифрой 1 внутри"
-    @FindBy(how = How.CLASS_NAME,using = "")
+    @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div/div[4]/div[1]")
     private SelenideElement howItsWork;
 
+    //Шаг 1
+    @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div/div[4]/div[2]/div[1]/div[1]")
+    private SelenideElement stepOne;
+
     //Шаг 1 "Заказываете самокат"
-    @FindBy(how = How.CLASS_NAME,using = "")
+    @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div/div[4]/div[2]/div[1]/div[2]/div[1]")
     private SelenideElement stepOneOrderScooter;
 
     //Описание Шага 1 "Выбираете, когда и куда привезти"
-    @FindBy(how = How.CLASS_NAME,using = "")
+    @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div/div[4]/div[2]/div[1]/div[2]/div[2]")
     private SelenideElement stepOneDescription;
 
-    //Блок "Вопросы о важном" (каждый вопрос и ответ)
+    //Шаг 2
+    @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div/div[4]/div[2]/div[2]/div[1]")
+    private SelenideElement stepTwo;
+
+    //Шаг 2 "Курьер привозит самокат"
+    @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div/div[4]/div[2]/div[2]/div[2]/div[1]")
+    private SelenideElement stepTwoDeliveryScooter;
+
+    //Описание Шага 2 "А вы — оплачиваете аренду"
+    @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div/div[4]/div[2]/div[2]/div[2]/div[2]")
+    private SelenideElement stepTwoDescription;
+
+    //Шаг 3
+    @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div/div[4]/div[2]/div[3]/div[1]")
+    private SelenideElement stepThree;
+
+    //Шаг 3 "Катаетесь"
+    @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div/div[4]/div[2]/div[3]/div[2]/div[1]")
+    private SelenideElement stepThreeEnjoy;
+
+    //Описание Шага 3 "Сколько часов аренды осталось — видно на сайте"
+    @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div/div[4]/div[2]/div[3]/div[2]/div[2]")
+    private SelenideElement stepThreeDescription;
+
+    //Шаг 4
+    @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div/div[4]/div[2]/div[4]/div[1]")
+    private SelenideElement stepFour;
+
+    //Шаг 4 "Курьер забирает самокат"
+    @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div/div[4]/div[2]/div[4]/div[2]/div[1]")
+    private SelenideElement stepFourReturnScooter;
+
+    //Описание Шага 4 "Когда аренда заканчивается"
+    @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div/div[4]/div[2]/div[4]/div[2]/div[2]")
+    private SelenideElement stepFourDescription;
+
+    //Блок "Вопросы о важном"
+    @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div/div[5]/div[1]")
+    private SelenideElement questionsAboutImportant;
+
     //Вопрос: Сколько это стоит? И как оплатить?
+    @FindBy(how = How.XPATH,using = "//*[@id=\"accordion__heading-0\"]")
+    private SelenideElement questionsAboutPay;
+
     //Ответ: "Сутки — 400 рублей. Оплата курьеру — наличными или картой.";
+    @FindBy(how = How.XPATH,using = "//*[@id=\"accordion__panel-0\"]/p")
+    private SelenideElement answerAboutPay;
 
     //Вопрос: Хочу сразу несколько самокатов! Так можно?
+    @FindBy(how = How.XPATH,using = "//*[@id=\"accordion__heading-1\"]")
+    private SelenideElement questionsAboutFewScooters;
+
     //Ответ:"Пока что у нас так: один заказ — один самокат. Если хотите покататься с друзьями, можете просто сделать несколько заказов — один за другим.";
+    @FindBy(how = How.XPATH,using = "//*[@id=\"accordion__panel-1\"]/p")
+    private SelenideElement answerAboutFewScooters;
 
     //Вопрос: Как рассчитывается время аренды?
+    @FindBy(how = How.XPATH,using = "//*[@id=\"accordion__heading-2\"]")
+    private SelenideElement questionsAboutRentalTime;
+
     //Ответ: "Допустим, вы оформляете заказ на 8 мая. Мы привозим самокат 8 мая в течение дня. Отсчёт времени аренды начинается с момента, когда вы оплатите заказ курьеру. Если мы привезли самокат 8 мая в 20:30, суточная аренда закончится 9 мая в 20:30.";
+    @FindBy(how = How.XPATH,using = "//*[@id=\"accordion__panel-2\"]/p")
+    private SelenideElement answerAboutRentalTime;
 
     //Вопрос: Можно ли заказать самокат прямо на сегодня?
+    @FindBy(how = How.XPATH,using = "//*[@id=\"accordion__heading-3\"]")
+    private SelenideElement questionsOrderScooterNow;
+
     //Ответ: "Только начиная с завтрашнего дня. Но скоро станем расторопнее.";
+    @FindBy(how = How.XPATH,using = "//*[@id=\"accordion__panel-3\"]/p")
+    private SelenideElement answerOrderScooterNow;
 
     //Вопрос: Можно ли продлить заказ или вернуть самокат раньше?
+    @FindBy(how = How.XPATH,using = "//*[@id=\"accordion__heading-4\"]")
+    private SelenideElement questionsAboutExtendOrder;
+
     //Ответ:"Пока что нет! Но если что-то срочное — всегда можно позвонить в поддержку по красивому номеру 1010.";
+    @FindBy(how = How.XPATH,using = "//*[@id=\"accordion__panel-4\"]/p")
+    private SelenideElement answerAboutExtendOrder;
 
     //Вопрос: Вы привозите зарядку вместе с самокатом?
+    @FindBy(how = How.XPATH,using = "//*[@id=\"accordion__heading-5\"]")
+    private SelenideElement questionsChargingScooter;
+
     //Ответ:"Самокат приезжает к вам с полной зарядкой. Этого хватает на восемь суток — даже если будете кататься без передышек и во сне. Зарядка не понадобится.";
+    @FindBy(how = How.XPATH,using = "//*[@id=\"accordion__panel-5\"]/p")
+    private SelenideElement answerAbouChargingScooter;
 
     //Вопрос: Можно ли отменить заказ?
+    @FindBy(how = How.XPATH,using = "//*[@id=\"accordion__heading-6\"]")
+    private SelenideElement questionsAboutCancelOrder;
+
     //Ответ:"Да, пока самокат не привезли. Штрафа не будет, объяснительной записки тоже не попросим. Все же свои.";
+    @FindBy(how = How.XPATH,using = "//*[@id=\"accordion__panel-6\"]/p")
+    private SelenideElement answerAboutCancelOrder;
 
     //Вопрос: Я жизу за МКАДом, привезёте?
+    @FindBy(how = How.XPATH,using = "//*[@id=\"accordion__heading-7\"]")
+    private SelenideElement questionsAboutBeyondMkad;
+
     //Ответ: "Да, обязательно. Всем самокатов! И Москве, и Московской области.";
+    @FindBy(how = How.XPATH,using = "//*[@id=\"accordion__panel-7\"]/p")
+    private SelenideElement answerAboutBeyondMkad;
     //
-
-    //Button Статус заказа Header_Link__1TAG7
-    @FindBy(how = How.CLASS_NAME,using = "Header_Link__1TAG7")
-    private SelenideElement buttonOrderStatus;
-
-    // Field order number
-    @FindBy(how = How.CLASS_NAME,using = "Header_Input__xIoUq")
-    private SelenideElement fieldOrderNumber;
-
-    // Button Go!
-    @FindBy(how = How.CLASS_NAME,using = "Header_Button__28dPO")
-    private SelenideElement buttonGo;
-
-    // Image Такого заказа нет Track_NotFound__6oaoY
-    @FindBy(how = How.CLASS_NAME,using = "Track_NotFound__6oaoY")
-    private SelenideElement imageTrackNotFound;
 
     // Список вопросов типа -> Question: Сколько это стоит? И как оплатить?
     @FindBy(how = How.CLASS_NAME,using = "accordion__button")
-    private ElementsCollection accordionHeadingQuestion;
+    private ElementsCollection listQestionsAboutScooterOrder;
 
     // Список ответов типа -> Answer: Сутки — 400 рублей. Оплата курьеру — наличными или картой.
     @FindBy(how = How.CLASS_NAME,using = "accordion__panel")
-    private ElementsCollection accordionHeadingAnswer;
+    private ElementsCollection listAnswersAboutScooterOrder;
 
     private void clickOnAccordionHeadingQuestion(int number) {
-        SelenideElement getQuestion = accordionHeadingQuestion.get(number);
+        SelenideElement getQuestion = listQestionsAboutScooterOrder.get(number);
         getQuestion.scrollTo().shouldBe(Condition.visible).click();
     }
 
     private String getAccordionHeadingAnswer(int number) {
-        SelenideElement getAnswer = accordionHeadingAnswer.get(number);
+        SelenideElement getAnswer = listAnswersAboutScooterOrder.get(number);
         return getAnswer.shouldBe(Condition.visible).getText();
     }
 
@@ -96,16 +163,4 @@ class MainPage extends HeaderAndFooterOfPage{
         clickOnAccordionHeadingQuestion(number);
         return getAccordionHeadingAnswer(number);
     }
-
-    void inputNumberOrder(String orderNumber){
-        buttonOrderStatus.scrollTo().shouldBe(Condition.visible).click();
-        fieldOrderNumber.shouldBe(Condition.visible).setValue(orderNumber);
-        buttonGo.scrollTo().shouldBe(Condition.visible).click();
-
-     }
-
-     Boolean trackFound(){
-         return imageTrackNotFound.shouldBe(Condition.visible).isDisplayed();
-     }
-
 }

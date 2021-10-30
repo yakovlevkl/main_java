@@ -20,7 +20,7 @@ class OrderPageStepTwo extends OrderPageStepOne {
     @FindBy(how = How.CLASS_NAME,using = "Dropdown-option")
     private ElementsCollection listRentalPeriod;
 
-    //* CheckBox Color Scooter Black //*[@id="root"]/div/div[2]/div[2]/div[3]/label[1]
+    //* CheckBox Color Scooter Black
     @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div[2]/div[2]/div[3]/label[1]")
     private SelenideElement fieldColorScooterBlack;
 
@@ -32,11 +32,11 @@ class OrderPageStepTwo extends OrderPageStepOne {
     @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div[2]/div[2]/div[4]/input")
     SelenideElement fieldCommentsForCourier;
 
-    // Button Back                  //*[@id="root"]/div/div[2]/div[3]/button
+    // Button Back
     @FindBy(how = How.CLASS_NAME,using = "Button_Inverted__3IF-i")
     private SelenideElement buttonBack;
 
-    // Button Order //*[@id="root"]/div/div[2]/div[3]/button[2]
+    // Button Order
     @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div[2]/div[3]/button[2]")
     private SelenideElement buttonOrder;
 
@@ -48,9 +48,14 @@ class OrderPageStepTwo extends OrderPageStepOne {
     @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div[2]/div[5]/div[2]/button[2]")
     private SelenideElement buttonConfirmOrderYes;
 
-    //Форма подтверждения заказа да нет //*[@id="root"]/div/div[2]/div[5]
+    //Форма подтверждения заказа да нет
     @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div[2]/div[5]")
     private SelenideElement formConfirmOrder;
+
+    //Форма оформленного заказа "Заказ оформлен"
+    @FindBy(how = How.CLASS_NAME,using = "Order_ModalHeader__3FDaJ")
+    private SelenideElement formOrderAccepted;
+
 
     void clickButtonBack(){
         buttonBack.scrollTo().shouldBe(Condition.visible).click();
@@ -87,8 +92,12 @@ class OrderPageStepTwo extends OrderPageStepOne {
         buttonConfirmOrderYes.scrollTo().shouldBe(Condition.visible).click();
     }
 
-    Boolean controlformConfirmOrder() {
+    Boolean controlFormConfirmOrder() {
         return buttonConfirmOrderYes.isDisplayed();
+    }
+
+    Boolean isOrderAccepted(){
+        return formOrderAccepted.getText().contains("Заказ оформлен");
     }
 
     void orderConfirmationStepTwo(String deliveryDate,
